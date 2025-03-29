@@ -41,6 +41,17 @@ All pull requests should have 100% test coverage (with notable exceptions) and n
 - Call `npm test` to run the unit tests
 - Call `npm run coverage` to check the test coverage (using [istanbuljs/nyc](https://github.com/istanbuljs/nyc))
 
+## CLI
+
+In addition to its programmatic API, `unzip-crx` also includes a simple and convenient CLI for unzipping \*.crx Chrome extension files directly from the terminal:
+
+```
+npm install -g unzip-crx
+unzip-crx /directory/this-chrome-extension.crx ./output-directory
+```
+
+Specifying the output directory is optional.
+
 ## LICENSE
 
 MIT

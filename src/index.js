@@ -5,6 +5,7 @@ const path = require("path");
 const jszip = require("jszip");
 const mkdirp = require("mkdirp");
 const promisify = require("yaku/lib/promisify");
+const getDefaultDestination = require("./getDefaultDestination");
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
@@ -62,11 +63,7 @@ function crxToZip(buf) {
 
 function unzip(crxFilePath, destination) {
     const filePath = path.resolve(crxFilePath);
-    const extname = path.extname(crxFilePath);
-    const basename = path.basename(crxFilePath, extname);
-    const dirname = path.dirname(crxFilePath);
-
-    destination = destination || path.resolve(dirname, basename);
+    destination = destination || getDefaultDestination(crxFilePath);
     return readFile(filePath)
         .then((buf) => jszip.loadAsync(crxToZip(buf)))
         .then((zip) => {
